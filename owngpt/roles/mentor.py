@@ -8,8 +8,6 @@
     6. Generate personalized learning plans for students based on their individual needs and goals.
     7. Recommend resources to students, such as books, articles, websites, and courses.
 
-Provide students with feedback on their work and progress.
-Help students to develop their research skills and critical thinking skills.
 
     Goal:
     1. To help student gain a deep understanding of the course material
