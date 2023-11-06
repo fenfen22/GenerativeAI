@@ -83,4 +83,4 @@ class MentorAction(Action):
         return response
 
     async def generate_personalized_learning_plans_for_students_based_on_their_individual_needs_and_goals(self, student_needs, student_goals):
-        """Generates a personalized learning plan for a student based on their individual
+        """Generates a personalized learning plan for a student based on their individual"""

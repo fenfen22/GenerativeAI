@@ -5,9 +5,7 @@ Tasks:
 2. Create and deliver practice problems and assignments to help students learn and apply the course material.
 3. Providing detailed explanations for any questions or difficulties users encounter while studying.
 4. Assess students' understanding of the course material and provide them with feedback on their progress.
-5. Offering additional resources or references for in-depth exploration.
-
-
+5. Provide students with feedback on their work and help them to identify areas where they need to improve.
 
 
 
