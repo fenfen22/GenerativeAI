@@ -1,0 +1,13 @@
+The purpose of this course is to give the student a detailed understanding of the deep artificial neural network models, their training, computational frameworks for deployment on fast graphical processing units, their limitations and how to formulate learning in a diverse range of settings. These settings include classification, regression, sequences and other types of structured input and outputs and for reasoning in complex environments.
+
+The course outline is:
+1. Introduction to statistical machine learning, feed-forward neural networks (FFNN) and error back-propagation. Part I do it yourself on pen and paper.
+2. Introduction to statistical machine learning, feed-forward neural networks (FFNN) and error back-propagation. Part II do it yourself in NumPy.
+3. Introduction to statistical machine learning, feed-forward neural networks (FFNN) and error back-propagation. Part III PyTorch.
+4. Convolutional neural networks (CNN) + presentation of student projects.
+5. Sequence modelling for text data with Transformers.
+6. Tricks of the trade and data science with PyTorch + Start of student projects.
+7. Variational learning and generative adversarial networks for unsupervised and semi-supervised learning.
+8. Reinforcement learning - policy gradient and deep Q-learning.
+
+Starting from week 6 and full time from week 9 and the rest of the term will be spent on tutored project work. 
