@@ -11,34 +11,42 @@ from langchain.agents import AgentExecutor
 
 '''
 
-Following the example from: https://python.langchain.com/docs/modules/agents/
+Following and adapting the example from: https://python.langchain.com/docs/modules/agents/
+
+Goal is to make a basic tutor who can store and retrieve information about a student.
 
 '''
 
-OPENAI_API_KEY = ''
-
-#chat = ChatOpenAI(api_key=OPENAI_API_KEY)
-
-#conversation = ConversationChain(llm=chat)
-
-#conversation.run("Translate this sentence from English to French: I love programming.")
+# Remove this before pushing code changes to git
+OPENAI_API_KEY = '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'
 
 llm = ChatOpenAI(model="gpt-3.5-turbo", temperature=0, api_key=OPENAI_API_KEY)
-#r = llm.invoke("how many letters in the word educa?")
-#print(r)
 
 @tool
-def get_word_length(word: str) -> int:
-    """Returns the length of a word."""
-    return len(word)
+def save_student_info(info: str) -> None:
+    """
+    Saves information about the student user in a text file so it can be retrieved later.
+    Information like name, student number, courses taken, etc.
+    """
+    with open('info.txt', 'a') as f:
+        f.write(info)
 
-tools = [get_word_length]
+@tool
+def load_student_info() -> str:
+    """
+    Loads information about the student user from a text file to improve the conversation.
+    Information like name, student number, courses taken, etc.
+    """
+    with open('info.txt', 'r') as f:
+        return f.read()
+
+tools = [save_student_info, load_student_info]
 
 prompt = ChatPromptTemplate.from_messages(
     [
         (
             "system",
-            "You are a very powerful assistant, but bad at calculating lengths of words.",
+            "You are a university tutor, your goal is to help the student user with their learning. You can and should save info about the student in the text file in your tools.",
         ),
         ("user", "{input}"),
         MessagesPlaceholder(variable_name="agent_scratchpad"),
@@ -59,34 +67,16 @@ agent = (
     | OpenAIFunctionsAgentOutputParser()
 )
 
-#r = agent.invoke({"input": "how many letters in the word educa?", "intermediate_steps": []})
-#print(r)
+agent_executor = AgentExecutor(agent=agent, tools=tools, verbose=False)
 
-""" user_input = "how many letters in the word educa?"
-intermediate_steps = []
+print('I am your personal tutor, ask me something: ')
+
 while True:
-    output = agent.invoke(
-        {
-            "input": user_input,
-            "intermediate_steps": intermediate_steps,
-        }
-    )
-    if isinstance(output, AgentFinish):
-        final_result = output.return_values["output"]
-        break
-    else:
-        print(f"TOOL NAME: {output.tool}")
-        print(f"TOOL INPUT: {output.tool_input}")
-        tool = {"get_word_length": get_word_length}[output.tool]
-        observation = tool.run(output.tool_input)
-        intermediate_steps.append((output, observation))
-print(final_result) """
+    user_input = input()
+    if user_input == 'exit': break
+    agent_executor.invoke({"input": user_input})
 
-agent_executor = AgentExecutor(agent=agent, tools=tools, verbose=True)
-
-agent_executor.invoke({"input": "how many letters in the word educa?"})
-
-
+print('Goodbye!')
 
 
 
