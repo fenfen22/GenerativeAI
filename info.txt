@@ -1,0 +1,3 @@
+Name: Attila
+Student Number: 123456
+Courses Taken: Deep Learning, Marine Biology

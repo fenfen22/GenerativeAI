@@ -17,10 +17,7 @@ Goal is to make a basic tutor who can store and retrieve information about a stu
 
 '''
 
-# Remove this before pushing code changes to git
-OPENAI_API_KEY = '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'
-
-llm = ChatOpenAI(model="gpt-3.5-turbo", temperature=0, api_key=OPENAI_API_KEY)
+llm = ChatOpenAI(model="gpt-3.5-turbo", temperature=0)
 
 @tool
 def save_student_info(info: str) -> None:
@@ -28,7 +25,7 @@ def save_student_info(info: str) -> None:
     Saves information about the student user in a text file so it can be retrieved later.
     Information like name, student number, courses taken, etc.
     """
-    with open('info.txt', 'a') as f:
+    with open('info.txt', 'w+') as f:
         f.write(info)
 
 @tool
@@ -37,7 +34,7 @@ def load_student_info() -> str:
     Loads information about the student user from a text file to improve the conversation.
     Information like name, student number, courses taken, etc.
     """
-    with open('info.txt', 'r') as f:
+    with open('info.txt', 'r+') as f:
         return f.read()
 
 tools = [save_student_info, load_student_info]
@@ -46,7 +43,7 @@ prompt = ChatPromptTemplate.from_messages(
     [
         (
             "system",
-            "You are a university tutor, your goal is to help the student user with their learning. You can and should save info about the student in the text file in your tools.",
+            "You are a university tutor, your goal is to help the student user with their learning. You can and should save info about the student in the text file mentioned in your tools.",
         ),
         ("user", "{input}"),
         MessagesPlaceholder(variable_name="agent_scratchpad"),
@@ -69,14 +66,11 @@ agent = (
 
 agent_executor = AgentExecutor(agent=agent, tools=tools, verbose=False)
 
-print('I am your personal tutor, ask me something: ')
+print('Hello! I am your personal tutor, ask me something: (type in then press Enter)')
 
 while True:
     user_input = input()
     if user_input == 'exit': break
-    agent_executor.invoke({"input": user_input})
+    print(agent_executor.invoke({"input": user_input})['output'])
 
 print('Goodbye!')
-
-
-
