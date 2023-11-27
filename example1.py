@@ -17,13 +17,12 @@ Goal is to make a basic tutor who can store and retrieve information about a stu
 
 '''
 
-llm = ChatOpenAI(model="gpt-3.5-turbo", temperature=0)
+llm = ChatOpenAI(model="gpt-4", temperature=0)
 
 @tool
 def save_student_info(info: str) -> None:
     """
-    Saves information about the student user in a text file so it can be retrieved later.
-    Information like name, student number, courses taken, etc.
+    Saves relevant info about the student (name, student number, courses taken, etc) so it can be retrieved later.
     """
     with open('info.txt', 'w+') as f:
         f.write(info)
@@ -31,19 +30,32 @@ def save_student_info(info: str) -> None:
 @tool
 def load_student_info() -> str:
     """
-    Loads information about the student user from a text file to improve the conversation.
-    Information like name, student number, courses taken, etc.
+    Loads info about the student (name, student number, courses taken, etc) user to improve the learning experience.
     """
     with open('info.txt', 'r+') as f:
         return f.read()
 
-tools = [save_student_info, load_student_info]
+@tool
+def get_learning_objectives() -> str:
+    """
+    Loads the course's learning objectives as text.
+    """
+    with open('objectives.txt', 'r+') as f:
+        return f.read()
+
+tools = [save_student_info, load_student_info, get_learning_objectives]
 
 prompt = ChatPromptTemplate.from_messages(
     [
         (
             "system",
-            "You are a university tutor, your goal is to help the student user with their learning. You can and should save info about the student in the text file mentioned in your tools.",
+            "You are a tutor for a Master's level course in deep learning.\
+            You have access to the course's learning objectives in your tools.\
+            Your goal is to answer questions the student has about the course, and make sure they reach the learning objectives.\
+            You can ask questions to assess the student's level in the course.\
+            You can and should save info about the student in the text file mentioned in your tools.\
+            If no info is available, you can ask questions to learn more about the student.\
+            Use that info to tailor your help.",
         ),
         ("user", "{input}"),
         MessagesPlaceholder(variable_name="agent_scratchpad"),
@@ -64,13 +76,15 @@ agent = (
     | OpenAIFunctionsAgentOutputParser()
 )
 
-agent_executor = AgentExecutor(agent=agent, tools=tools, verbose=False)
+agent_executor = AgentExecutor(agent=agent, tools=tools, verbose=True)
 
-print('Hello! I am your personal tutor, ask me something: (type in then press Enter)')
+print('Hello! I am your personal tutor for the Deep Learning course, ask me something: (type in then press Enter)')
 
 while True:
+    print('\nUser:')
     user_input = input()
     if user_input == 'exit': break
-    print(agent_executor.invoke({"input": user_input})['output'])
+    print('\nTutor:')
+    print(agent_executor.invoke({"input": user_input}))#['output'])
 
 print('Goodbye!')
