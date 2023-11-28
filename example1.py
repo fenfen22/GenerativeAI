@@ -1,13 +1,13 @@
 from langchain.chat_models import ChatOpenAI
-from langchain.schema import HumanMessage, SystemMessage
-from langchain.chains import ConversationChain
-from langchain.agents import tool
+from langchain.chains import RetrievalQA
+from langchain.agents import tool, Tool
 from langchain.prompts import ChatPromptTemplate, MessagesPlaceholder
 from langchain.tools.render import format_tool_to_openai_function
 from langchain.agents.format_scratchpad import format_to_openai_function_messages
 from langchain.agents.output_parsers import OpenAIFunctionsAgentOutputParser
-from langchain.schema.agent import AgentFinish
 from langchain.agents import AgentExecutor
+from langchain.vectorstores import Chroma
+from langchain.embeddings.sentence_transformer import SentenceTransformerEmbeddings
 
 '''
 
@@ -42,8 +42,21 @@ def get_learning_objectives() -> str:
     """
     with open('objectives.txt', 'r+') as f:
         return f.read()
+    
+embedding = SentenceTransformerEmbeddings(model_name="all-MiniLM-L6-v2")
+db = Chroma(persist_directory="./chroma_db", embedding_function=embedding)
 
-tools = [save_student_info, load_student_info, get_learning_objectives]
+knowledgeBase = RetrievalQA.from_chain_type(
+    llm=llm, chain_type="stuff",retriever=db.as_retriever()
+)
+
+knowledgeBaseTool = Tool(
+        name="KnowledgeBase",
+        func=knowledgeBase.run,
+        description="Contains all the Deep Learning course content.",
+    )
+
+tools = [save_student_info, load_student_info, get_learning_objectives, knowledgeBaseTool]
 
 prompt = ChatPromptTemplate.from_messages(
     [
