@@ -11,6 +11,7 @@ from langchain.embeddings.sentence_transformer import SentenceTransformerEmbeddi
 from langchain.chains.conversation.memory import ConversationBufferMemory
 from langchain.schema import messages_from_dict, messages_to_dict
 import json
+from pathlib import Path
 
 '''
 
@@ -123,17 +124,20 @@ if st.button("Submit"):
             response = agent_executor({"input":user_input}, return_only_outputs=True)
             st.write(response['output'])
             st.session_state["memory"].append(memory.chat_memory.messages)
+            # print(st.session_state["memory"])
     else:
         st.warning("Please enter your question")
 
+# print(messages_to_dict(memory.chat_memory.messages))
 
 chat_history = []
 for message in st.session_state["memory"]:
     ingest_to_db = messages_to_dict(message)
     chat_history.append(ingest_to_db)
 
-# Save chat history data to a JSON file
-with open("chat_history.json", "w") as file:
-    json.dump(chat_history, file)
+
+
+with Path("message.json").open("w") as f:
+    json.dump(chat_history,f)
 
 # # code for running this: streamlit run example1.py

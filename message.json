@@ -1,0 +1,62 @@
+[
+    [
+        {
+            "type": "human",
+            "data": {
+                "content": "good morning",
+                "additional_kwargs": {},
+                "type": "human",
+                "example": false
+            }
+        },
+        {
+            "type": "ai",
+            "data": {
+                "content": "Good morning! How can I assist you with your Master's level course in deep learning today?",
+                "additional_kwargs": {},
+                "type": "ai",
+                "example": false
+            }
+        }
+    ],
+    [
+        {
+            "type": "human",
+            "data": {
+                "content": "good afternoon",
+                "additional_kwargs": {},
+                "type": "human",
+                "example": false
+            }
+        },
+        {
+            "type": "ai",
+            "data": {
+                "content": "Good afternoon! How can I assist you with your Master's level course in deep learning today?",
+                "additional_kwargs": {},
+                "type": "ai",
+                "example": false
+            }
+        }
+    ],
+    [
+        {
+            "type": "human",
+            "data": {
+                "content": "good night",
+                "additional_kwargs": {},
+                "type": "human",
+                "example": false
+            }
+        },
+        {
+            "type": "ai",
+            "data": {
+                "content": "Good night! How can I assist you with your deep learning course today?",
+                "additional_kwargs": {},
+                "type": "ai",
+                "example": false
+            }
+        }
+    ]
+]
