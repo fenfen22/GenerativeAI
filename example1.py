@@ -1,13 +1,16 @@
 from langchain.chat_models import ChatOpenAI
 from langchain.chains import RetrievalQA
-from langchain.agents import tool, Tool
 from langchain.prompts import ChatPromptTemplate, MessagesPlaceholder
 from langchain.tools.render import format_tool_to_openai_function
 from langchain.agents.format_scratchpad import format_to_openai_function_messages
 from langchain.agents.output_parsers import OpenAIFunctionsAgentOutputParser
-from langchain.agents import AgentExecutor
+from langchain.agents import AgentExecutor, initialize_agent, tool, Tool
 from langchain.vectorstores import Chroma
+import streamlit as st
 from langchain.embeddings.sentence_transformer import SentenceTransformerEmbeddings
+from langchain.chains.conversation.memory import ConversationBufferMemory
+from langchain.schema import messages_from_dict, messages_to_dict
+import json
 
 '''
 
@@ -89,15 +92,48 @@ agent = (
     | OpenAIFunctionsAgentOutputParser()
 )
 
-agent_executor = AgentExecutor(agent=agent, tools=tools, verbose=True)
+memory = ConversationBufferMemory(memory_key="chat_history")
+# agent_chain = initialize_agent(tools=tools, llm=llm, agent=agent,memory=memory,verbose=True)
+agent_executor = AgentExecutor(agent=agent, tools=tools, verbose=True,memory=memory)
 
-print('Hello! I am your personal tutor for the Deep Learning course, ask me something: (type in then press Enter)')
+# print('Hello! I am your personal tutor for the Deep Learning course, ask me something: (type in then press Enter)')
 
-while True:
-    print('\nUser:')
-    user_input = input()
-    if user_input == 'exit': break
-    print('\nTutor:')
-    print(agent_executor.invoke({"input": user_input}))#['output'])
+# while True:
+#     print('\nUser:')
+#     user_input = input()
+#     if user_input == 'exit': break
+#     print('\nTutor:')
+#     print(agent_executor.invoke({"input": user_input}))#['output'])
 
-print('Goodbye!')
+# print('Goodbye!')
+
+
+# app framework
+st.header("🦜️🔗 Personal Learning Assitants")
+
+# show stuff to the screen if there is the input
+user_input = st.text_input("You: ")
+
+if "memory" not in st.session_state:
+    st.session_state["memory"] = []
+
+if st.button("Submit"):
+    if user_input:
+        with st.spinner("Generating response..."):
+            response = agent_executor({"input":user_input}, return_only_outputs=True)
+            st.write(response['output'])
+            st.session_state["memory"].append(memory.chat_memory.messages)
+    else:
+        st.warning("Please enter your question")
+
+
+chat_history = []
+for message in st.session_state["memory"]:
+    ingest_to_db = messages_to_dict(message)
+    chat_history.append(ingest_to_db)
+
+# Save chat history data to a JSON file
+with open("chat_history.json", "w") as file:
+    json.dump(chat_history, file)
+
+# # code for running this: streamlit run example1.py
