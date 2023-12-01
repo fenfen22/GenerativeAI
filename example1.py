@@ -12,6 +12,8 @@ from langchain.chains.conversation.memory import ConversationBufferMemory
 from langchain.schema import messages_from_dict, messages_to_dict
 import json
 from pathlib import Path
+from langchain.vectorstores.redis import Redis
+from langchain.memory import RedisChatMessageHistory
 
 '''
 
@@ -21,7 +23,11 @@ Goal is to make a basic tutor who can store and retrieve information about a stu
 
 '''
 
-llm = ChatOpenAI(model="gpt-4", temperature=0)
+token = os.environ.get("UPSTASH_TOEKN")
+if not token:
+    token = input("UPSTASH_TOKEN:")
+
+llm = ChatOpenAI(model="gpt-3.5-turbo", temperature=0)
 
 @tool
 def save_student_info(info: str) -> None:
@@ -93,7 +99,11 @@ agent = (
     | OpenAIFunctionsAgentOutputParser()
 )
 
-memory = ConversationBufferMemory(memory_key="chat_history")
+# https://python.langchain.com/docs/modules/memory/agent_with_memory_in_db  link of redisChatMessageHistory
+
+# ttl:600 seconds later, this session will get expired
+message_history = RedisChatMessageHistory(url='redis://default:1ba296b6f6cc44eca59375672c9afca2@us1-brave-lynx-40528.upstash.io:40528',ttl=600, session_id="my-session")
+memory = ConversationBufferMemory(memory_key="chat_history", chat_memory=message_history)
 # agent_chain = initialize_agent(tools=tools, llm=llm, agent=agent,memory=memory,verbose=True)
 agent_executor = AgentExecutor(agent=agent, tools=tools, verbose=True,memory=memory)
 
@@ -112,7 +122,6 @@ agent_executor = AgentExecutor(agent=agent, tools=tools, verbose=True,memory=mem
 # app framework
 st.header("🦜️🔗 Personal Learning Assitants")
 
-# show stuff to the screen if there is the input
 user_input = st.text_input("You: ")
 
 if "memory" not in st.session_state:
@@ -124,11 +133,8 @@ if st.button("Submit"):
             response = agent_executor({"input":user_input}, return_only_outputs=True)
             st.write(response['output'])
             st.session_state["memory"].append(memory.chat_memory.messages)
-            # print(st.session_state["memory"])
     else:
         st.warning("Please enter your question")
-
-# print(messages_to_dict(memory.chat_memory.messages))
 
 chat_history = []
 for message in st.session_state["memory"]:

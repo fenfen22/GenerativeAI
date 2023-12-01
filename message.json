@@ -1,62 +1,148 @@
 [
-    [
-        {
-            "type": "human",
-            "data": {
-                "content": "good morning",
-                "additional_kwargs": {},
-                "type": "human",
-                "example": false
-            }
-        },
-        {
-            "type": "ai",
-            "data": {
-                "content": "Good morning! How can I assist you with your Master's level course in deep learning today?",
-                "additional_kwargs": {},
-                "type": "ai",
-                "example": false
-            }
-        }
-    ],
-    [
-        {
-            "type": "human",
-            "data": {
-                "content": "good afternoon",
-                "additional_kwargs": {},
-                "type": "human",
-                "example": false
-            }
-        },
-        {
-            "type": "ai",
-            "data": {
-                "content": "Good afternoon! How can I assist you with your Master's level course in deep learning today?",
-                "additional_kwargs": {},
-                "type": "ai",
-                "example": false
-            }
-        }
-    ],
-    [
-        {
-            "type": "human",
-            "data": {
-                "content": "good night",
-                "additional_kwargs": {},
-                "type": "human",
-                "example": false
-            }
-        },
-        {
-            "type": "ai",
-            "data": {
-                "content": "Good night! How can I assist you with your deep learning course today?",
-                "additional_kwargs": {},
-                "type": "ai",
-                "example": false
-            }
-        }
-    ]
+  [
+    {
+      "type": "human",
+      "data": {
+        "content": "my name is fenfen",
+        "additional_kwargs": {},
+        "type": "human",
+        "example": false
+      }
+    },
+    {
+      "type": "ai",
+      "data": {
+        "content": "Hello Fenfen! How can I assist you today with the Master's level course in deep learning?",
+        "additional_kwargs": {},
+        "type": "ai",
+        "example": false
+      }
+    },
+    {
+      "type": "human",
+      "data": {
+        "content": "what is my name",
+        "additional_kwargs": {},
+        "type": "human",
+        "example": false
+      }
+    },
+    {
+      "type": "ai",
+      "data": {
+        "content": "Your name is Fenfen.",
+        "additional_kwargs": {},
+        "type": "ai",
+        "example": false
+      }
+    },
+    {
+      "type": "human",
+      "data": {
+        "content": "what is my name",
+        "additional_kwargs": {},
+        "type": "human",
+        "example": false
+      }
+    },
+    {
+      "type": "ai",
+      "data": {
+        "content": "Your name is Fenfen.",
+        "additional_kwargs": {},
+        "type": "ai",
+        "example": false
+      }
+    },
+    {
+      "type": "human",
+      "data": {
+        "content": "what is my name",
+        "additional_kwargs": {},
+        "type": "human",
+        "example": false
+      }
+    },
+    {
+      "type": "ai",
+      "data": {
+        "content": "Your name is Fenfen.",
+        "additional_kwargs": {},
+        "type": "ai",
+        "example": false
+      }
+    },
+    {
+      "type": "human",
+      "data": {
+        "content": "I have a brother",
+        "additional_kwargs": {},
+        "type": "human",
+        "example": false
+      }
+    },
+    {
+      "type": "ai",
+      "data": {
+        "content": "That's great! Having a sibling can be a wonderful experience. How can I assist you today?",
+        "additional_kwargs": {},
+        "type": "ai",
+        "example": false
+      }
+    },
+    {
+      "type": "human",
+      "data": {
+        "content": "I have a brother or a sister?",
+        "additional_kwargs": {},
+        "type": "human",
+        "example": false
+      }
+    },
+    {
+      "type": "ai",
+      "data": {
+        "content": "I'm sorry, but as an AI, I don't have access to personal information about individuals unless it has been shared with me in the course of our conversation. I am designed to respect user privacy and confidentiality. My primary function is to provide information and answer questions to the best of my knowledge and abilities. If you have any concerns about privacy or data security, please let me know, and I will do my best to address them.",
+        "additional_kwargs": {},
+        "type": "ai",
+        "example": false
+      }
+    },
+    {
+      "type": "human",
+      "data": {
+        "content": "what is my name",
+        "additional_kwargs": {},
+        "type": "human",
+        "example": false
+      }
+    },
+    {
+      "type": "ai",
+      "data": {
+        "content": "Your name is Fenfen.",
+        "additional_kwargs": {},
+        "type": "ai",
+        "example": false
+      }
+    },
+    {
+      "type": "human",
+      "data": {
+        "content": "what is my name",
+        "additional_kwargs": {},
+        "type": "human",
+        "example": false
+      }
+    },
+    {
+      "type": "ai",
+      "data": {
+        "content": "Your name is Fenfen.",
+        "additional_kwargs": {},
+        "type": "ai",
+        "example": false
+      }
+    }
+  ]
 ]
