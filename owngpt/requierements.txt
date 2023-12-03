@@ -1,0 +1,2 @@
+tiktoken==0.5.1
+trulens-eval==0.18.2

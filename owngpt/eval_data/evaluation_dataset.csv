@@ -1,0 +1,32 @@
+Question,Answer,Source
+What is PyTorch?,"It’s a Python based scientific computing package targeted at two sets of audiences:
+A replacement for numpy to use the power of GPUs
+a deep learning research platform that provides maximum flexibility and speed",notebook 3_1
+What is the MNIST dataset?,"MNIST is a dataset that is often used for benchmarking. The MNIST dataset consists of 70,000 images of handwritten digits from 0-9. The dataset is split into a 50,000 images training set, 10,000 images validation set and 10,000 images test set. The images are 28x28 pixels, where each pixel represents a normalised value between 0-255 (0=black and 255=white).
+<image>",notebook 3_4
+Which optimizers are mentioned in the exercise notebook?,"Optimizer and learning rate:
+SGD + Momentum: learning rate 0.01 - 0.1
+ADAM: learning rate 3e-4 - 1e-5
+RMSPROP: somewhere between SGD and ADAM",notebook 3_4
+Describe the model given in the exercise notebook?,"The provided code defines a PyTorch neural network for a classification task with the following characteristics:
+
+It has two layers: an input layer and a hidden layer.
+The activation function used is Exponential Linear Unit (ELU).
+The network is designed for a classification task with 10 output classes.
+The number of hidden units in the hidden layer is 512.
+The number of input features is determined based on the shape of the input data .
+The forward method defines how data flows through the network by applying linear transformations followed by ELU activation.",notebook 3_3
+"What is the initial assignment in exercise notebook 3.4-EXE-FFN-MNIST.ipynb, and what are the steps to execute it?","The first task is to use Kaiming He initialization instead of Xavier Glorot.
+In order to implement this task:
+We replace the Xavier initialization for self.W_1 and self.W_2 with init.kaiming_normal_, which initializes the weight matrices using the Kaiming He initialization method suitable for ReLU activation.
+Code:
+<code>",notebook 3_4
+What do we expect to learn from week4?,"In this lab, we will learn how to create your own convolutional classifier for different datasets, and the technologies to improve the performance of your convolutional classifier. ","notebook 4_1, notebook 4_2"
+What is CIFAR-10 dataset?,The images in CIFAR-10 are RGB images (3 channels) with size 32x32 (so they have size 3x32x32). There are 10 different classes.,notebook 4_2
+What are convolutional neural networks?,"The standard ConvNets are organised into layers. Each layer is parameterized by weights and biases. Each layer has an element-wise activation function, and there are no cycles in the connections. In ConvNets, each unit is only connected to a small subset of the input units, which is called the receptive field of the unit. ",notebook 4_1
+Can you provide some suggestions to improve the model’s performance?,"Tell us something like increase the depth of the network, modify the convolutional layer parameters(number of filters, filter sizes and strides), pooling layers, batch normalization,  change the learning rate, dropout or weight regularization.",notebook 4_2
+What do RNN and LSTM stand for?,RNN stands for Reccurent Neural Network and LSTM stands for Long Short-Term Memory (unit).,notebook 5_1
+How can I give text as input to my network?,"Before text can be used as input for a neural network, it needs to be represented as a vector. This can be done by tokenizing the text, and then looking up the embedding vector for each token. Tokenization transforms characters, words, or parts of words into tokens, which can be numbers.",notebook 5_1
+What variables are used in the attention function?,"The attention mechanism is defined using the query Q, the keys K, the values V, and the scaling parameter tau.",notebook 5_1
+What is sampling for a language model?,"Sampling text means that the language model is generating text. This corresponds to the inference process of the network, as opposed to training.",notebook 5_1
+What is a rnn?,"A recurrent neural network (RNN) is a type of neural network that has been succesful in modelling sequential data, e.g. language, speech, protein sequences, etc. A RNN performs its computations in a cyclic manner, where the same computation is applied to every sample of a given sequence. The idea is that the network should be able to use the previous computations as some form of memory and apply this to future computations"," notebook 5_2, notebook 5_3"
