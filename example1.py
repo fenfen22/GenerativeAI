@@ -23,9 +23,10 @@ Goal is to make a basic tutor who can store and retrieve information about a stu
 
 '''
 
-token = os.environ.get("UPSTASH_TOEKN")
-if not token:
-    token = input("UPSTASH_TOKEN:")
+# token = os.environ.get("UPSTASH_TOEKN")
+# if not token:
+#     token = input("UPSTASH_TOKEN:")
+token = 'AZ5QACQgMjY0MDY0MDQtM2YwMC00ODFhLTlhNDEtNWU1MDBjNDYxZTNmMWJhMjk2YjZmNmNjNDRlY2E1OTM3NTY3MmM5YWZjYTI='
 
 llm = ChatOpenAI(model="gpt-3.5-turbo", temperature=0)
 
