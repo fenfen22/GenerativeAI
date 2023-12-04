@@ -35,8 +35,8 @@ from langchain.memory import ConversationBufferMemory
 # retriever = vectorstore.as_retriever()
 
 # Load, split, embed, and store in vector DB
-raw_documents = TextLoader('C:\\Users\\difto\\Desktop\\Cours\\F23\\02456 Deep Learning\\Learning objectives.txt', encoding="utf8").load()
-raw_documents += TextLoader('C:\\Users\\difto\\Desktop\\Cours\\F23\\02456 Deep Learning\\Course plan.txt', encoding="utf8").load()
+raw_documents = TextLoader('learning objectives.txt', encoding="utf8").load()
+raw_documents += TextLoader('course plan.txt', encoding="utf8").load()
 
 text_splitter = CharacterTextSplitter(chunk_size=1000, chunk_overlap=50)
 documents = text_splitter.split_documents(raw_documents)
