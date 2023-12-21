@@ -20,12 +20,6 @@ from langchain.memory import ConversationBufferMemory
 # Loading documents
 # documents = ""
 
-# with open('C:\\Users\\difto\\Desktop\\Cours\\F23\\02456 Deep Learning\\Learning objectives.txt', encoding="utf8") as f:
-#     documents += f.read()
-
-# with open('C:\\Users\\difto\\Desktop\\Cours\\F23\\02456 Deep Learning\\Course plan.txt', encoding="utf8") as f:
-#     documents += f.read()
-
 # # Embedding the documents and storing them in a vector store
 # vectorstore = FAISS.from_texts(
 #     [documents], embedding=OpenAIEmbeddings()

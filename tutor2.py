@@ -23,9 +23,6 @@ Goal is to make a basic tutor who can store and retrieve information about a stu
 
 '''
 
-# token = os.environ.get("UPSTASH_TOEKN")
-# if not token:
-#     token = input("UPSTASH_TOKEN:")
 token = 'AZ5QACQgMjY0MDY0MDQtM2YwMC00ODFhLTlhNDEtNWU1MDBjNDYxZTNmMWJhMjk2YjZmNmNjNDRlY2E1OTM3NTY3MmM5YWZjYTI='
 
 llm = ChatOpenAI(model="gpt-3.5-turbo", temperature=0)
@@ -108,17 +105,6 @@ memory = ConversationBufferMemory(memory_key="chat_history", chat_memory=message
 # agent_chain = initialize_agent(tools=tools, llm=llm, agent=agent,memory=memory,verbose=True)
 agent_executor = AgentExecutor(agent=agent, tools=tools, verbose=True,memory=memory)
 
-# print('Hello! I am your personal tutor for the Deep Learning course, ask me something: (type in then press Enter)')
-
-# while True:
-#     print('\nUser:')
-#     user_input = input()
-#     if user_input == 'exit': break
-#     print('\nTutor:')
-#     print(agent_executor.invoke({"input": user_input}))#['output'])
-
-# print('Goodbye!')
-
 
 # app framework
 st.header("🦜️🔗 Personal Learning Assitants")
@@ -147,4 +133,4 @@ for message in st.session_state["memory"]:
 with Path("message.json").open("w") as f:
     json.dump(chat_history,f)
 
-# # code for running this: streamlit run example1.py
+# # code for running this: streamlit run tutor2.py
