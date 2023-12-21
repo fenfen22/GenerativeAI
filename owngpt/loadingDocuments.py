@@ -58,40 +58,40 @@ def Loading_files(folder_path):
                 filePaths.append(file_path)
     return filePaths
 
-print("loading data...")
-folder_path = "owngpt\knowledgeBase"
-filePaths = Loading_files(folder_path)
-loaders = [read_data(file_path) for file_path in filePaths]
-all_documents = []
+# print("loading data...")
+# folder_path = "owngpt\knowledgeBase"
+# filePaths = Loading_files(folder_path)
+# loaders = [read_data(file_path) for file_path in filePaths]
+# all_documents = []
 
-for loader in loaders:
-    print("Loading raw document..." + loader.file_path)
-    raw_documents = loader.load()
+# for loader in loaders:
+#     print("Loading raw document..." + loader.file_path)
+#     raw_documents = loader.load()
 
-    print("Splitting text...")
-    # text_splitter = CharacterTextSplitter(
-    #     separator="\n\n",
-    #     chunk_size=1000,
-    #     chunk_overlap=100,
-    #     length_function=len,
-    # )
-    text_splitter = RecursiveCharacterTextSplitter(
-        chunk_size=700,
-        chunk_overlap=100,
-        length_function=len,
-        add_start_index=True,
-    )
-    documents = text_splitter.split_documents(raw_documents)
-    all_documents.extend(documents)
+#     print("Splitting text...")
+#     # text_splitter = CharacterTextSplitter(
+#     #     separator="\n\n",
+#     #     chunk_size=1000,
+#     #     chunk_overlap=100,
+#     #     length_function=len,
+#     # )
+#     text_splitter = RecursiveCharacterTextSplitter(
+#         chunk_size=700,
+#         chunk_overlap=100,
+#         length_function=len,
+#         add_start_index=True,
+#     )
+#     documents = text_splitter.split_documents(raw_documents)
+#     all_documents.extend(documents)
 
-print("Creating vectorstore...")
-embeddings = OpenAIEmbeddings()
-# embeddings = HuggingFaceEmbeddings(model_name="sentence-transformers/all-mpnet-base-v2")
-vectorstore = FAISS.from_documents(all_documents,embeddings)
+# print("Creating vectorstore...")
+# embeddings = OpenAIEmbeddings()
+# # embeddings = HuggingFaceEmbeddings(model_name="sentence-transformers/all-mpnet-base-v2")
+# vectorstore = FAISS.from_documents(all_documents,embeddings)
 
 
-with open("vectorstore.pkl","wb") as f:
-    pickle.dump(vectorstore,f)
+# with open("vectorstore.pkl","wb") as f:
+#     pickle.dump(vectorstore,f)
 
 
 
