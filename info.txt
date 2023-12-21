@@ -1,1 +1,0 @@
-The student is taking a deep learning course, a course in Machine Learning for signal processing, and a course in process mining.

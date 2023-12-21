@@ -1,17 +1,10 @@
-Demonstrate knowledge of machine learning terminology such as likelihood function, maximum likelihood, Bayesian inference, feed-forward, convolutional and Transformer neural networks, and error back propagation.
-
-Understand and explain the choices and limitations of a model for a given setting.
-
-Apply and analyze results from deep learning models in exercises and own project work.
-
-Plan, delimit and carry out an applied or methods-oriented project in collaboration with fellow students and project supervisor.
-
-Assess and summarize the project results in relation to aims, methods and available data.
-
-Carry out the project and interpret results by use of computational framework for GPU programming such as PyTorch.
-
-Structure and write a final short technical report including problem formulation, description of methods, experiments, evaluation and conclusion.
-
-Organize and present project results at the final project presentation and in report.
-
-Read, evaluate and give feedback to work of other students.
+Learning Objectives:
+- Demonstrate knowledge of machine learning terminology such as likelihood function, maximum likelihood, Bayesian inference, feed-forward, convolutional and Transformer neural networks, and error back propagation.
+- Understand and explain the choices and limitations of a model for a given setting.
+- Apply and analyze results from deep learning models in exercises and own project work.
+- Plan, delimit and carry out an applied or methods-oriented project in collaboration with fellow students and project supervisor.
+- Assess and summarize the project results in relation to aims, methods and available data.
+- Carry out the project and interpret results by use of computational framework for GPU programming such as PyTorch.
+- Structure and write a final short technical report including problem formulation, description of methods, experiments, evaluation and conclusion.
+- Organize and present project results at the final project presentation and in report.
+- Read, evaluate and give feedback to work of other students.
