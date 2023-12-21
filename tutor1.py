@@ -29,11 +29,11 @@ from langchain.memory import ConversationBufferMemory
 # retriever = vectorstore.as_retriever()
 
 # Load, split, embed, and store in vector DB
-raw_documents = TextLoader('learning objectives.txt', encoding="utf8").load()
-raw_documents += TextLoader('course plan.txt', encoding="utf8").load()
-raw_documents += TextLoader('w1.md', encoding="utf8").load()
-raw_documents += TextLoader('w2.1.md', encoding="utf8").load()
-raw_documents += TextLoader('w3.4.md', encoding="utf8").load()
+raw_documents = TextLoader('owngpt\knowledgeBase\GeneralInformation\LearningObjectives.txt', encoding="utf8").load()
+raw_documents += TextLoader('owngpt\knowledgeBase\GeneralInformation\CoursePlan.txt', encoding="utf8").load()
+raw_documents += TextLoader('owngpt\knowledgeBase\w1.md', encoding="utf8").load()
+raw_documents += TextLoader('owngpt\knowledgeBase\w1.md', encoding="utf8").load()
+raw_documents += TextLoader('owngpt\knowledgeBase\w3.4.md', encoding="utf8").load()
 
 text_splitter = CharacterTextSplitter(chunk_size=1000, chunk_overlap=50)
 documents = text_splitter.split_documents(raw_documents)
